@@ -24,19 +24,18 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--cream); color: var(--charcoal);
+      background: var(--cream);
+      color: var(--charcoal);
       overflow-x: hidden;
     }
+    /* ─── NOISE TEXTURE OVERLAY ─── */
     body::before {
       content: '';
       position: fixed; inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
       pointer-events: none; z-index: 0; opacity: 0.4;
     }
-
-    /* ═══════════════════════════════════════
-       LANDING PAGE STYLES
-    ═══════════════════════════════════════ */
+    /* ─── NAV ─── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
@@ -47,12 +46,15 @@
     }
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem; font-weight: 500;
-      letter-spacing: 0.02em; color: var(--charcoal);
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--charcoal);
       text-decoration: none;
     }
     .nav-cta {
-      background: var(--yellow); color: var(--charcoal);
+      background: var(--yellow);
+      color: var(--charcoal);
       border: none; cursor: pointer;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.8rem; font-weight: 500;
@@ -62,11 +64,15 @@
       text-decoration: none;
     }
     .nav-cta:hover { background: var(--yellow-dk); transform: translateY(-1px); }
+    /* ─── HERO ─── */
     .hero {
-      position: relative; min-height: 100vh;
+      position: relative;
+      min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
-      padding: 120px 48px 80px; overflow: hidden;
+      padding: 120px 48px 80px;
+      overflow: hidden;
     }
+    /* Big decorative blobs */
     .blob {
       position: absolute; border-radius: 50%; filter: blur(80px);
       pointer-events: none; z-index: 0;
@@ -103,7 +109,8 @@
       border-radius: 100px; padding: 7px 16px;
       font-size: 0.75rem; font-weight: 500; color: var(--muted);
       letter-spacing: 0.04em; text-transform: uppercase;
-      margin-bottom: 36px; animation: fadeUp 0.8s ease both;
+      margin-bottom: 36px;
+      animation: fadeUp 0.8s ease both;
     }
     .hero-badge-dot {
       width: 7px; height: 7px; border-radius: 50%;
@@ -118,17 +125,23 @@
     .hero-headline {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(3rem, 7vw, 5.5rem);
-      font-weight: 300; line-height: 1.08;
-      letter-spacing: -0.01em; color: var(--charcoal);
-      margin-bottom: 28px; animation: fadeUp 0.8s 0.1s ease both;
+      font-weight: 300;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: var(--charcoal);
+      margin-bottom: 28px;
+      animation: fadeUp 0.8s 0.1s ease both;
     }
     .hero-headline em {
-      font-style: italic; color: transparent;
+      font-style: italic;
+      color: transparent;
       -webkit-text-stroke: 1.5px var(--charcoal);
     }
     .hero-sub {
-      font-size: 1.05rem; font-weight: 300;
-      color: var(--muted); line-height: 1.75;
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.75;
       max-width: 520px; margin: 0 auto 48px;
       animation: fadeUp 0.8s 0.2s ease both;
     }
@@ -163,18 +176,23 @@
     .hero-form-btn:hover { background: #44403A; transform: translateY(-1px); }
     .hero-form-note {
       width: 100%; text-align: center;
-      font-size: 0.75rem; color: var(--muted); margin-top: 14px;
+      font-size: 0.75rem; color: var(--muted);
+      margin-top: 14px;
     }
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+    /* ─── DIVIDER ─── */
     .section-divider {
       width: 100%; height: 1px;
       background: linear-gradient(to right, transparent, var(--border), transparent);
+      margin: 0 auto;
     }
+    /* ─── ABOUT SECTION ─── */
     .about {
-      position: relative; padding: 100px 48px;
+      position: relative;
+      padding: 100px 48px;
       max-width: 1100px; margin: 0 auto;
     }
     .about-label {
@@ -183,14 +201,16 @@
       color: var(--muted); margin-bottom: 56px;
     }
     .about-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 80px; align-items: start;
     }
     .about-left h2 {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2rem, 4vw, 3.2rem);
       font-weight: 300; line-height: 1.2;
-      letter-spacing: -0.01em; margin-bottom: 28px;
+      letter-spacing: -0.01em;
+      margin-bottom: 28px;
     }
     .about-left h2 em { font-style: italic; }
     .about-left p {
@@ -202,7 +222,8 @@
       padding-top: 8px;
     }
     .about-card {
-      background: white; border: 1px solid var(--border);
+      background: white;
+      border: 1px solid var(--border);
       border-radius: 20px; padding: 28px 32px;
       position: relative; overflow: hidden;
       transition: transform 0.25s, box-shadow 0.25s;
@@ -213,19 +234,22 @@
     }
     .about-card-accent {
       position: absolute; top: 0; left: 0;
-      width: 100%; height: 4px; border-radius: 20px 20px 0 0;
+      width: 100%; height: 4px;
+      border-radius: 20px 20px 0 0;
     }
-    .card-yellow .about-card-accent { background: var(--yellow); }
-    .card-blush  .about-card-accent { background: var(--blush); }
-    .card-lilac  .about-card-accent { background: var(--lilac); }
+    .card-yellow  .about-card-accent { background: var(--yellow); }
+    .card-blush   .about-card-accent { background: var(--blush); }
+    .card-lilac   .about-card-accent { background: var(--lilac); }
     .about-card h3 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem; font-weight: 500; margin-bottom: 10px;
+      font-size: 1.25rem; font-weight: 500;
+      margin-bottom: 10px;
     }
     .about-card p {
       font-size: 0.88rem; line-height: 1.7;
       color: var(--muted); font-weight: 300;
     }
+    /* ─── WAITLIST SECTION ─── */
     .waitlist-section {
       background: var(--charcoal);
       position: relative; overflow: hidden;
@@ -245,7 +269,8 @@
     .waitlist-inner {
       position: relative; z-index: 1;
       max-width: 760px; margin: 0 auto;
-      padding: 110px 48px; text-align: center;
+      padding: 110px 48px;
+      text-align: center;
     }
     .waitlist-inner .section-label {
       font-size: 0.7rem; font-weight: 500;
@@ -256,16 +281,22 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2.2rem, 5vw, 3.8rem);
       font-weight: 300; line-height: 1.1;
-      color: var(--cream); margin-bottom: 20px;
+      color: var(--cream);
+      margin-bottom: 20px;
     }
-    .waitlist-inner h2 em { font-style: italic; color: var(--yellow); }
+    .waitlist-inner h2 em {
+      font-style: italic;
+      color: var(--yellow);
+    }
     .waitlist-inner > p {
       font-size: 0.95rem; line-height: 1.8;
       color: rgba(255,253,245,0.55);
-      max-width: 480px; margin: 0 auto 52px; font-weight: 300;
+      max-width: 480px; margin: 0 auto 52px;
+      font-weight: 300;
     }
     .waitlist-form {
-      display: grid; grid-template-columns: 1fr 1fr;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 12px; max-width: 560px; margin: 0 auto;
     }
     .waitlist-form .full-width { grid-column: 1 / -1; }
@@ -285,19 +316,21 @@
     }
     .waitlist-submit {
       grid-column: 1 / -1;
-      background: var(--yellow); color: var(--charcoal);
-      border: none; cursor: pointer;
+      background: var(--yellow);
+      color: var(--charcoal); border: none; cursor: pointer;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.9rem; font-weight: 500;
       letter-spacing: 0.04em; padding: 17px;
       border-radius: 12px;
-      transition: background 0.2s, transform 0.15s; margin-top: 4px;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 4px;
     }
     .waitlist-submit:hover { background: var(--yellow-dk); transform: translateY(-1px); }
     .waitlist-privacy {
       font-size: 0.72rem; color: rgba(255,253,245,0.3);
       margin-top: 20px; letter-spacing: 0.01em;
     }
+    /* FLOW TOGGLE */
     .flow-toggle {
       display: flex; gap: 10px; justify-content: center;
       margin-bottom: 36px;
@@ -309,18 +342,23 @@
       font-family: 'DM Sans', sans-serif;
       font-size: 0.85rem; font-weight: 400;
       color: rgba(255,253,245,0.55);
-      cursor: pointer; transition: all 0.2s; white-space: nowrap;
+      cursor: pointer; transition: all 0.2s;
+      white-space: nowrap;
     }
     .flow-btn:hover {
       border-color: rgba(245,226,122,0.4);
       color: rgba(255,253,245,0.85);
     }
     .flow-btn.active {
-      background: var(--yellow); border-color: var(--yellow);
-      color: var(--charcoal); font-weight: 500;
+      background: var(--yellow);
+      border-color: var(--yellow);
+      color: var(--charcoal);
+      font-weight: 500;
     }
+    /* FORM PANELS */
     .form-panel { display: none; }
     .form-panel.active { display: block; }
+    /* SELECT DROPDOWN */
     .waitlist-form select {
       width: 100%;
       background: rgba(255,253,245,0.07);
@@ -341,11 +379,15 @@
       border-color: rgba(245,226,122,0.5);
       background-color: rgba(255,253,245,0.1);
     }
-    .waitlist-form select option { background: #2A2622; color: var(--cream); }
+    .waitlist-form select option {
+      background: #2A2622; color: var(--cream);
+    }
     .waitlist-form select.selected { color: var(--cream); }
+    /* SUCCESS STATE */
     .success-msg {
-      display: none; flex-direction: column; align-items: center;
-      gap: 16px; padding: 40px;
+      display: none;
+      flex-direction: column; align-items: center; gap: 16px;
+      padding: 40px;
     }
     .success-icon {
       width: 56px; height: 56px; border-radius: 50%;
@@ -355,9 +397,11 @@
     }
     .success-msg h3 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem; font-weight: 300; color: var(--cream);
+      font-size: 1.8rem; font-weight: 300;
+      color: var(--cream);
     }
     .success-msg p { font-size: 0.9rem; color: rgba(255,253,245,0.5); }
+    /* ─── FOOTER ─── */
     footer {
       padding: 48px;
       display: flex; align-items: center; justify-content: space-between;
@@ -367,195 +411,12 @@
       font-family: 'Cormorant Garamond', serif;
       font-size: 1rem; font-weight: 500; color: var(--charcoal);
     }
-    .footer-right { font-size: 0.75rem; color: var(--muted); }
-    .reveal {
-      opacity: 0; transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+    .footer-right {
+      font-size: 0.75rem; color: var(--muted);
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ═══════════════════════════════════════
-       ADMIN PAGE STYLES
-    ═══════════════════════════════════════ */
-    #admin-page { display: none; }
-    body.admin-mode #landing-page { display: none; }
-    body.admin-mode #admin-page { display: block; }
-
-    /* Password gate */
-    .pw-gate {
-      min-height: 100vh;
-      display: flex; align-items: center; justify-content: center;
-      position: relative; z-index: 1;
-    }
-    .pw-box {
-      background: white; border: 1px solid var(--border);
-      border-radius: 20px; padding: 48px 40px;
-      max-width: 380px; width: 100%; text-align: center;
-      box-shadow: 0 8px 40px rgba(42,38,34,0.06);
-    }
-    .pw-box h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem; font-weight: 400; margin-bottom: 8px;
-    }
-    .pw-box p {
-      font-size: 0.85rem; color: var(--muted);
-      margin-bottom: 28px; font-weight: 300;
-    }
-    .pw-box input {
-      width: 100%; border: 1.5px solid var(--border);
-      border-radius: 12px; padding: 14px 18px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem; color: var(--charcoal);
-      outline: none; text-align: center;
-      transition: border-color 0.2s;
-      margin-bottom: 16px;
-    }
-    .pw-box input:focus { border-color: var(--yellow-dk); }
-    .pw-box button {
-      width: 100%; background: var(--charcoal); color: var(--cream);
-      border: none; cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem; font-weight: 500;
-      padding: 14px; border-radius: 12px;
-      transition: background 0.2s;
-    }
-    .pw-box button:hover { background: #44403A; }
-    .pw-error {
-      color: #C44; font-size: 0.8rem;
-      margin-top: 12px; display: none;
-    }
-
-    /* Admin dashboard */
-    .admin-dash { display: none; position: relative; z-index: 1; }
-    .admin-nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 22px 48px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(255,253,245,0.85);
-      backdrop-filter: blur(12px);
-      position: sticky; top: 0; z-index: 10;
-    }
-    .admin-nav-left {
-      display: flex; align-items: center; gap: 16px;
-    }
-    .admin-nav-badge {
-      font-size: 0.68rem; font-weight: 500;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      color: var(--muted); background: rgba(42,38,34,0.05);
-      padding: 4px 10px; border-radius: 6px;
-    }
-    .admin-nav-link {
-      font-size: 0.8rem; color: var(--muted);
-      text-decoration: none; cursor: pointer;
-      background: none; border: none;
-      font-family: 'DM Sans', sans-serif;
-      transition: color 0.2s;
-    }
-    .admin-nav-link:hover { color: var(--charcoal); }
-    .admin-main {
-      max-width: 960px; margin: 0 auto;
-      padding: 48px 48px 80px;
-    }
-    .admin-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem; font-weight: 300; margin-bottom: 8px;
-    }
-    .admin-subtitle {
-      font-size: 0.9rem; color: var(--muted);
-      font-weight: 300; margin-bottom: 40px;
-    }
-    .stats-row { display: flex; gap: 16px; margin-bottom: 40px; }
-    .stat-card {
-      flex: 1; background: white;
-      border: 1px solid var(--border);
-      border-radius: 16px; padding: 24px 28px;
-    }
-    .stat-label {
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 8px;
-    }
-    .stat-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.4rem; font-weight: 400;
-    }
-    .stat-card.yellow { border-left: 4px solid var(--yellow); }
-    .stat-card.blush  { border-left: 4px solid var(--blush); }
-    .stat-card.lilac  { border-left: 4px solid var(--lilac); }
-    .tabs {
-      display: flex; gap: 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .tab {
-      background: none; border: none; cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.88rem; font-weight: 400;
-      color: var(--muted); padding: 14px 24px;
-      border-bottom: 2px solid transparent;
-      transition: all 0.2s;
-    }
-    .tab:hover { color: var(--charcoal); }
-    .tab.active {
-      color: var(--charcoal); font-weight: 500;
-      border-bottom-color: var(--yellow-dk);
-    }
-    .tab-count {
-      display: inline-flex; align-items: center; justify-content: center;
-      background: var(--yellow-lt); color: var(--charcoal);
-      font-size: 0.7rem; font-weight: 500;
-      min-width: 22px; height: 22px; border-radius: 100px;
-      padding: 0 7px; margin-left: 8px;
-    }
-    .table-container {
-      background: white; border: 1px solid var(--border);
-      border-top: none; border-radius: 0 0 16px 16px;
-      overflow: hidden; margin-bottom: 32px;
-    }
-    .table-view { display: none; }
-    .table-view.active { display: block; }
-    table.admin-table {
-      width: 100%; border-collapse: collapse; font-size: 0.88rem;
-    }
-    .admin-table th {
-      text-align: left; font-weight: 500;
-      font-size: 0.72rem; text-transform: uppercase;
-      letter-spacing: 0.08em; color: var(--muted);
-      padding: 14px 20px;
-      background: rgba(42,38,34,0.02);
-      border-bottom: 1px solid var(--border);
-    }
-    .admin-table td {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--border);
-    }
-    .admin-table tr:last-child td { border-bottom: none; }
-    .admin-table tr:hover td { background: rgba(245,226,122,0.06); }
-    .td-date { font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
-    .td-type {
-      display: inline-block; background: var(--yellow-lt);
-      padding: 3px 10px; border-radius: 6px;
-      font-size: 0.78rem; font-weight: 500;
-    }
-    .empty-state {
-      text-align: center; padding: 80px 20px;
-      color: var(--muted); font-size: 0.92rem;
-    }
-    .empty-state span { font-size: 2.5rem; display: block; margin-bottom: 16px; }
-    .actions { display: flex; gap: 12px; }
-    .btn {
-      background: white; border: 1px solid var(--border);
-      border-radius: 10px; padding: 11px 22px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.82rem; font-weight: 500;
-      color: var(--charcoal); cursor: pointer;
-      transition: all 0.2s;
-    }
-    .btn:hover { border-color: var(--charcoal); }
-    .btn.danger { color: #C44; border-color: #eaa; }
-    .btn.danger:hover { background: #C44; color: white; border-color: #C44; }
-
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
-      nav, .admin-nav { padding: 18px 24px; }
+      nav { padding: 18px 24px; }
       .hero { padding: 110px 24px 60px; }
       .about { padding: 80px 24px; }
       .about-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -563,243 +424,143 @@
       .waitlist-form { grid-template-columns: 1fr; }
       .waitlist-form .full-width { grid-column: 1; }
       footer { padding: 32px 24px; flex-direction: column; gap: 12px; text-align: center; }
-      .admin-main { padding: 32px 20px 60px; }
-      .stats-row { flex-direction: column; }
-      .admin-table th, .admin-table td { padding: 12px 14px; }
-      .admin-table { font-size: 0.82rem; }
+    }
+    /* Scroll-triggered fade */
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1; transform: translateY(0);
     }
   </style>
 </head>
 <body>
-
-  <!-- ═══════════════════════════════════════
-       LANDING PAGE
-  ═══════════════════════════════════════ -->
-  <div id="landing-page">
-    <nav>
-      <a href="#" class="nav-logo">Partum Care Now</a>
-      <a href="#join" class="nav-cta">Join Waitlist</a>
-    </nav>
-    <section class="hero">
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-      <div class="blob blob-3"></div>
-      <div class="hero-inner">
-        <div class="hero-badge">
-          <span class="hero-badge-dot"></span>
-          Coming Soon · Be the first to know
-        </div>
-        <h1 class="hero-headline">
-          Your care team,<br><em>whenever</em> you need them
-        </h1>
-        <p class="hero-sub">
-          Partum Care Now connects you with certified doulas, pelvic floor therapists, lactation consultants, and mental health providers — all verified, all local, all on your timeline.
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Partum Care Now</a>
+    <a href="#join" class="nav-cta">Join Waitlist</a>
+  </nav>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Coming Soon · Be the first to know
+      </div>
+      <h1 class="hero-headline">
+        Your care team,<br><em>whenever</em> you need them
+      </h1>
+      <p class="hero-sub">
+        Partum Care Now connects you with certified doulas, pelvic floor therapists, lactation consultants, and mental health providers — all verified, all local, all on your timeline.
+      </p>
+      <div class="hero-form">
+        <input type="email" placeholder="Your email address" id="hero-email" />
+        <button class="hero-form-btn" onclick="scrollToWaitlist()">Get Early Access →</button>
+        <p class="hero-form-note">No spam. Just a warm note when we're ready for you. 🌿</p>
+      </div>
+    </div>
+  </section>
+  <div class="section-divider"></div>
+  <!-- ABOUT -->
+  <section class="about">
+    <p class="about-label reveal">What we do</p>
+    <div class="about-grid">
+      <div class="about-left reveal">
+        <h2>The right provider,<br>right <em>where you are</em></h2>
+        <p>
+          Finding qualified partum care shouldn't feel like a second job. Whether you're preparing for birth, navigating pregnancy, or recovering and healing — we match you with certified, professionally verified providers in your area, exactly when you need them. No endless searching, no guesswork.
         </p>
-        <div class="hero-form">
-          <input type="email" placeholder="Your email address" id="hero-email" />
-          <button class="hero-form-btn" onclick="scrollToWaitlist()">Get Early Access →</button>
-          <p class="hero-form-note">No spam. Just a warm note when we're ready for you. 🌿</p>
-        </div>
       </div>
-    </section>
-    <div class="section-divider"></div>
-    <section class="about">
-      <p class="about-label reveal">What we do</p>
-      <div class="about-grid">
-        <div class="about-left reveal">
-          <h2>The right provider,<br>right <em>where you are</em></h2>
-          <p>
-            Finding qualified partum care shouldn't feel like a second job. Whether you're preparing for birth, navigating pregnancy, or recovering and healing — we match you with certified, professionally verified providers in your area, exactly when you need them. No endless searching, no guesswork.
-          </p>
+      <div class="about-right">
+        <div class="about-card card-yellow reveal" style="transition-delay: 0.1s">
+          <div class="about-card-accent"></div>
+          <h3>Verified Providers You Can Trust</h3>
+          <p>Every doula, pelvic floor therapist, lactation consultant, and mental health provider on our platform is certified and professionally vetted — so you never have to wonder.</p>
         </div>
-        <div class="about-right">
-          <div class="about-card card-yellow reveal" style="transition-delay: 0.1s">
-            <div class="about-card-accent"></div>
-            <h3>Verified Providers You Can Trust</h3>
-            <p>Every doula, pelvic floor therapist, lactation consultant, and mental health provider on our platform is certified and professionally vetted — so you never have to wonder.</p>
-          </div>
-          <div class="about-card card-blush reveal" style="transition-delay: 0.2s">
-            <div class="about-card-accent"></div>
-            <h3>Matched to You, In Your Area</h3>
-            <p>Tell us where you are and what you need. We surface the right providers near you — whether that's a birth doula, a postpartum support specialist, or a pelvic floor PT.</p>
-          </div>
-          <div class="about-card card-lilac reveal" style="transition-delay: 0.3s">
-            <div class="about-card-accent"></div>
-            <h3>On Your Schedule, Not Ours</h3>
-            <p>This isn't a 24/7 hotline. It's a smarter way to find care when you actually need it — at any stage of your pregnancy and partum journey.</p>
-          </div>
+        <div class="about-card card-blush reveal" style="transition-delay: 0.2s">
+          <div class="about-card-accent"></div>
+          <h3>Matched to You, In Your Area</h3>
+          <p>Tell us where you are and what you need. We surface the right providers near you — whether that's a birth doula, a postpartum support specialist, or a pelvic floor PT.</p>
         </div>
-      </div>
-    </section>
-    <section class="waitlist-section" id="join">
-      <div class="waitlist-blob-1"></div>
-      <div class="waitlist-blob-2"></div>
-      <div class="waitlist-inner">
-        <p class="section-label">Join the Waitlist</p>
-        <h2>Be the first to find<br>care that <em>fits you</em></h2>
-        <p>Join the waitlist and get priority access when we launch. We'll match you with verified partum care providers in your area — exactly when you need them.</p>
-        <div id="form-container">
-          <div class="flow-toggle">
-            <button class="flow-btn active" onclick="switchFlow('seeker', this)">I'm looking for care</button>
-            <button class="flow-btn"        onclick="switchFlow('provider', this)">I'm a provider</button>
-          </div>
-          <div class="form-panel active" id="panel-seeker">
-            <form class="waitlist-form" onsubmit="handleSubmit(event, 'seeker')">
-              <input type="text"  name="name"  placeholder="Your name"     required />
-              <input type="email" name="email" placeholder="Email address"  required />
-              <input type="tel"   name="phone" placeholder="Phone number (optional)" class="full-width" />
-              <button type="submit" class="waitlist-submit full-width">Secure My Spot →</button>
-            </form>
-          </div>
-          <div class="form-panel" id="panel-provider">
-            <form class="waitlist-form" onsubmit="handleSubmit(event, 'provider')">
-              <input type="text"  name="name"  placeholder="Your name"     required />
-              <input type="email" name="email" placeholder="Email address"  required />
-              <input type="tel"   name="phone" placeholder="Phone number (optional)" class="full-width" />
-              <select name="provider_type" class="full-width" required onchange="this.classList.add('selected')">
-                <option value="" disabled selected>What kind of provider are you?</option>
-                <option>Doula</option>
-                <option>Pelvic Floor Therapist</option>
-                <option>Lactation Consultant</option>
-                <option>Mental Health Provider</option>
-                <option>Other</option>
-              </select>
-              <button type="submit" class="waitlist-submit full-width">Join as a Provider →</button>
-            </form>
-          </div>
-          <p class="waitlist-privacy">We respect your privacy. No spam, ever.</p>
+        <div class="about-card card-lilac reveal" style="transition-delay: 0.3s">
+          <div class="about-card-accent"></div>
+          <h3>On Your Schedule, Not Ours</h3>
+          <p>This isn't a 24/7 hotline. It's a smarter way to find care when you actually need it — at any stage of your pregnancy and partum journey.</p>
         </div>
-        <div class="success-msg" id="success-msg">
-          <div class="success-icon">🌸</div>
-          <h3>You're on the list!</h3>
-          <p>We'll be in touch soon. Thank you for believing in better postpartum care.</p>
-        </div>
-      </div>
-    </section>
-    <footer>
-      <span class="footer-logo">Partum Care Now</span>
-      <span class="footer-right">© 2025 partumcarenow.com · All rights reserved</span>
-    </footer>
-  </div>
-
-  <!-- ═══════════════════════════════════════
-       ADMIN PAGE (hidden, accessed via ?admin)
-  ═══════════════════════════════════════ -->
-  <div id="admin-page">
-    <!-- Password gate -->
-    <div class="pw-gate" id="pw-gate">
-      <div class="pw-box">
-        <h2>Admin Access</h2>
-        <p>Enter the password to view signups.</p>
-        <input type="password" id="pw-input" placeholder="Password" onkeydown="if(event.key==='Enter')checkPassword()" />
-        <button onclick="checkPassword()">Continue</button>
-        <p class="pw-error" id="pw-error">Incorrect password. Try again.</p>
       </div>
     </div>
-
-    <!-- Dashboard (shown after password) -->
-    <div class="admin-dash" id="admin-dash">
-      <header class="admin-nav">
-        <div class="admin-nav-left">
-          <a href="#" class="nav-logo" onclick="goToSite(event)">Partum Care Now</a>
-          <span class="admin-nav-badge">Admin</span>
+  </section>
+  <!-- WAITLIST -->
+  <section class="waitlist-section" id="join">
+    <div class="waitlist-blob-1"></div>
+    <div class="waitlist-blob-2"></div>
+    <div class="waitlist-inner">
+      <p class="section-label">Join the Waitlist</p>
+      <h2>Be the first to find<br>care that <em>fits you</em></h2>
+      <p>Join the waitlist and get priority access when we launch. We'll match you with verified partum care providers in your area — exactly when you need them.</p>
+      <div id="form-container">
+        <!-- TOGGLE -->
+        <div class="flow-toggle">
+          <button class="flow-btn active" onclick="switchFlow('seeker', this)">I'm looking for care</button>
+          <button class="flow-btn"        onclick="switchFlow('provider', this)">I'm a provider</button>
         </div>
-        <button class="admin-nav-link" onclick="goToSite(event)">&larr; Back to site</button>
-      </header>
-      <main class="admin-main">
-        <h1 class="admin-title">Waitlist Signups</h1>
-        <p class="admin-subtitle">All signups from your landing page, updated in real time.</p>
-        <div class="stats-row">
-          <div class="stat-card yellow">
-            <p class="stat-label">Total Signups</p>
-            <p class="stat-number" id="stat-total">—</p>
-          </div>
-          <div class="stat-card blush">
-            <p class="stat-label">Care Seekers</p>
-            <p class="stat-number" id="stat-seekers">—</p>
-          </div>
-          <div class="stat-card lilac">
-            <p class="stat-label">Providers</p>
-            <p class="stat-number" id="stat-providers">—</p>
-          </div>
+        <!-- SEEKER FORM -->
+        <div class="form-panel active" id="panel-seeker">
+          <form class="waitlist-form" name="seekers" method="POST" data-netlify="true" onsubmit="handleSubmit(event, 'seeker')">
+            <input type="hidden" name="form-name" value="seekers" />
+            <input type="hidden" name="flow" value="seeker" />
+            <input type="text"  name="name"  placeholder="Your name"     required />
+            <input type="email" name="email" placeholder="Email address"  required />
+            <input type="tel"   name="phone" placeholder="Phone number (optional)" class="full-width" />
+            <button type="submit" class="waitlist-submit full-width">Secure My Spot →</button>
+          </form>
         </div>
-        <div class="tabs">
-          <button class="tab active" onclick="switchTab('seekers', this)">
-            Seekers <span class="tab-count" id="count-seekers">0</span>
-          </button>
-          <button class="tab" onclick="switchTab('providers', this)">
-            Providers <span class="tab-count" id="count-providers">0</span>
-          </button>
+        <!-- PROVIDER FORM -->
+        <div class="form-panel" id="panel-provider">
+          <form class="waitlist-form" name="providers" method="POST" data-netlify="true" onsubmit="handleSubmit(event, 'provider')">
+            <input type="hidden" name="form-name" value="providers" />
+            <input type="hidden" name="flow" value="provider" />
+            <input type="text"  name="name"  placeholder="Your name"     required />
+            <input type="email" name="email" placeholder="Email address"  required />
+            <input type="tel"   name="phone" placeholder="Phone number (optional)" class="full-width" />
+            <select name="provider_type" class="full-width" required onchange="this.classList.add('selected')">
+              <option value="" disabled selected>What kind of provider are you?</option>
+              <option>Doula</option>
+              <option>Pelvic Floor Therapist</option>
+              <option>Lactation Consultant</option>
+              <option>Mental Health Provider</option>
+              <option>Other</option>
+            </select>
+            <button type="submit" class="waitlist-submit full-width">Join as a Provider →</button>
+          </form>
         </div>
-        <div class="table-container">
-          <div class="table-view active" id="view-seekers"></div>
-          <div class="table-view" id="view-providers"></div>
-        </div>
-        <div class="actions">
-          <button class="btn" onclick="exportCSV()">Export CSV</button>
-          <button class="btn" onclick="renderAdmin()">Refresh</button>
-          <button class="btn danger" onclick="clearData()">Clear All Data</button>
-        </div>
-      </main>
+        <p class="waitlist-privacy">We respect your privacy. No spam, ever.</p>
+      </div>
+      <div class="success-msg" id="success-msg">
+        <div class="success-icon">🌸</div>
+        <h3>You're on the list!</h3>
+        <p>We'll be in touch soon. Thank you for believing in better postpartum care.</p>
+      </div>
     </div>
-  </div>
-
+  </section>
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Partum Care Now</span>
+    <span class="footer-right">© 2025 partumcarenow.com · All rights reserved</span>
+  </footer>
   <script>
-    // ═══════════════════════════════════════
-    // CONFIG — Set your admin password here
-    // ═══════════════════════════════════════
-    const ADMIN_PASSWORD = 'partum2025';
-    // To access admin: add ?admin to the URL
-    // e.g. yoursite.com/?admin or yoursite.com/index.html?admin
-
-    // ─── STORAGE ───
-    async function loadSignups() {
-      try {
-        const result = await window.storage.get('waitlist-data');
-        return result ? JSON.parse(result.value) : { seekers: [], providers: [] };
-      } catch { return { seekers: [], providers: [] }; }
-    }
-    async function saveSignups(data) {
-      try { await window.storage.set('waitlist-data', JSON.stringify(data)); }
-      catch (err) { console.error('Storage error:', err); }
-    }
-
-    // ─── ROUTING ───
-    const isAdmin = new URLSearchParams(window.location.search).has('admin');
-    if (isAdmin) {
-      document.body.classList.add('admin-mode');
-      document.title = 'Waitlist Admin — Partum Care Now';
-    }
-
-    function goToSite(e) {
-      e.preventDefault();
-      document.body.classList.remove('admin-mode');
-      document.title = 'Partum Care Now — Find Your Care Team';
-      window.scrollTo(0, 0);
-    }
-
-    // ─── PASSWORD GATE ───
-    function checkPassword() {
-      const input = document.getElementById('pw-input');
-      if (input.value === ADMIN_PASSWORD) {
-        document.getElementById('pw-gate').style.display = 'none';
-        document.getElementById('admin-dash').style.display = 'block';
-        renderAdmin();
-      } else {
-        document.getElementById('pw-error').style.display = 'block';
-        input.value = '';
-        input.focus();
-      }
-    }
-
-    // ─── LANDING PAGE: SCROLL REVEAL ───
+    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.12 });
     reveals.forEach(el => observer.observe(el));
 
-    // ─── LANDING PAGE: HERO EMAIL PREFILL ───
+    // Hero email → prefill waitlist form
     function scrollToWaitlist() {
       const email = document.getElementById('hero-email').value.trim();
       if (email) {
@@ -809,7 +570,7 @@
       document.getElementById('join').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // ─── LANDING PAGE: FLOW TOGGLE ───
+    // Switch seeker / provider flow
     function switchFlow(flow, btn) {
       document.querySelectorAll('.flow-btn').forEach(b => b.classList.remove('active'));
       document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
@@ -817,30 +578,25 @@
       document.getElementById('panel-' + flow).classList.add('active');
     }
 
-    // ─── LANDING PAGE: FORM SUBMIT ───
+    // Form submit → Netlify Forms
     async function handleSubmit(e, flow) {
       e.preventDefault();
       const form = e.target;
-      const btn = form.querySelector('button[type="submit"]');
+      const btn  = form.querySelector('button[type="submit"]');
       const originalText = btn.textContent;
       btn.textContent = 'Saving...';
       btn.disabled = true;
 
-      const entry = {
-        id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-        timestamp: new Date().toISOString(),
-        name:  form.querySelector('[name="name"]').value,
-        email: form.querySelector('[name="email"]').value,
-        phone: form.querySelector('[name="phone"]')?.value || '',
-      };
-      if (flow === 'provider') {
-        entry.provider_type = form.querySelector('[name="provider_type"]').value;
-      }
+      const data = new FormData(form);
 
       try {
-        const data = await loadSignups();
-        (flow === 'provider' ? data.providers : data.seekers).push(entry);
-        await saveSignups(data);
+        const response = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(data).toString(),
+        });
+
+        if (!response.ok) throw new Error('Network error');
 
         document.getElementById('form-container').style.display = 'none';
         const msg = document.getElementById('success-msg');
@@ -849,104 +605,11 @@
         msg.querySelector('p').textContent = flow === 'provider'
           ? "We'll be in touch once we're ready to onboard providers in your area."
           : "We'll reach out as soon as we launch in your area.";
-      } catch {
+      } catch (err) {
         btn.textContent = originalText;
         btn.disabled = false;
         alert('Something went wrong. Please try again.');
       }
-    }
-
-    // ─── ADMIN: HELPERS ───
-    function esc(str) {
-      const d = document.createElement('div');
-      d.textContent = str;
-      return d.innerHTML;
-    }
-    function formatDate(iso) {
-      const d = new Date(iso);
-      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-        + ' \u00b7 ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-    }
-
-    // ─── ADMIN: RENDER ───
-    async function renderAdmin() {
-      const data = await loadSignups();
-      const seekers = data.seekers || [];
-      const providers = data.providers || [];
-
-      document.getElementById('stat-total').textContent = seekers.length + providers.length;
-      document.getElementById('stat-seekers').textContent = seekers.length;
-      document.getElementById('stat-providers').textContent = providers.length;
-      document.getElementById('count-seekers').textContent = seekers.length;
-      document.getElementById('count-providers').textContent = providers.length;
-
-      const seekerView = document.getElementById('view-seekers');
-      if (seekers.length === 0) {
-        seekerView.innerHTML = '<div class="empty-state"><span>\ud83d\udccb</span>No seeker signups yet.<br>They\'ll appear here as people sign up.</div>';
-      } else {
-        let html = '<table class="admin-table"><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Date</th></tr></thead><tbody>';
-        seekers.slice().reverse().forEach(s => {
-          html += '<tr><td>' + esc(s.name) + '</td><td>' + esc(s.email) + '</td><td>' + esc(s.phone || '\u2014') + '</td><td class="td-date">' + formatDate(s.timestamp) + '</td></tr>';
-        });
-        html += '</tbody></table>';
-        seekerView.innerHTML = html;
-      }
-
-      const providerView = document.getElementById('view-providers');
-      if (providers.length === 0) {
-        providerView.innerHTML = '<div class="empty-state"><span>\ud83d\udccb</span>No provider signups yet.<br>They\'ll appear here as providers sign up.</div>';
-      } else {
-        let html = '<table class="admin-table"><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Type</th><th>Date</th></tr></thead><tbody>';
-        providers.slice().reverse().forEach(p => {
-          html += '<tr><td>' + esc(p.name) + '</td><td>' + esc(p.email) + '</td><td>' + esc(p.phone || '\u2014') + '</td><td><span class="td-type">' + esc(p.provider_type || '\u2014') + '</span></td><td class="td-date">' + formatDate(p.timestamp) + '</td></tr>';
-        });
-        html += '</tbody></table>';
-        providerView.innerHTML = html;
-      }
-    }
-
-    // ─── ADMIN: TABS ───
-    function switchTab(tab, btn) {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.table-view').forEach(v => v.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('view-' + tab).classList.add('active');
-    }
-
-    // ─── ADMIN: EXPORT CSV ───
-    async function exportCSV() {
-      const data = await loadSignups();
-      const activeTab = document.querySelector('.tab.active').textContent.trim().toLowerCase();
-      const isProviders = activeTab.startsWith('provider');
-      const entries = isProviders ? data.providers : data.seekers;
-
-      if (entries.length === 0) { alert('No data to export.'); return; }
-
-      let csv = isProviders
-        ? 'Name,Email,Phone,Provider Type,Date\n'
-        : 'Name,Email,Phone,Date\n';
-
-      entries.forEach(e => {
-        const row = [e.name, e.email, e.phone || ''];
-        if (isProviders) row.push(e.provider_type || '');
-        row.push(new Date(e.timestamp).toLocaleString());
-        csv += row.map(v => '"' + v.replace(/"/g, '""') + '"').join(',') + '\n';
-      });
-
-      const blob = new Blob([csv], { type: 'text/csv' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = (isProviders ? 'providers' : 'seekers') + '-waitlist.csv';
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-
-    // ─── ADMIN: CLEAR ───
-    async function clearData() {
-      if (!confirm('Are you sure you want to delete ALL waitlist signups? This cannot be undone.')) return;
-      await saveSignups({ seekers: [], providers: [] });
-      await renderAdmin();
     }
   </script>
 </body>
