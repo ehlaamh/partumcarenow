@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Waitlist Admin — Partum Care Now</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream:     #FFFDF5;
+      --yellow:    #F5E27A;
+      --yellow-lt: #FAF0B0;
+      --yellow-dk: #E8C840;
+      --blush:     #F2C8C0;
+      --lilac:     #D9C8E8;
+      --charcoal:  #2A2622;
+      --muted:     #7A726A;
+      --border:    rgba(42,38,34,0.08);
+    }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream); color: var(--charcoal);
+      min-height: 100vh;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.4;
+    }
+
+    /* ─── HEADER ─── */
+    .admin-nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 48px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,253,245,0.85);
+      backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .admin-nav-left {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .admin-nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 500;
+      color: var(--charcoal); text-decoration: none;
+    }
+    .admin-nav-badge {
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--muted); background: rgba(42,38,34,0.05);
+      padding: 4px 10px; border-radius: 6px;
+    }
+    .admin-nav-link {
+      font-size: 0.8rem; color: var(--muted);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .admin-nav-link:hover { color: var(--charcoal); }
+
+    /* ─── MAIN ─── */
+    .admin-main {
+      max-width: 960px; margin: 0 auto;
+      padding: 48px 48px 80px;
+      position: relative; z-index: 1;
+    }
+    .admin-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; font-weight: 300;
+      margin-bottom: 8px;
+    }
+    .admin-subtitle {
+      font-size: 0.9rem; color: var(--muted);
+      font-weight: 300; margin-bottom: 40px;
+    }
+
+    /* ─── STATS ─── */
+    .stats-row {
+      display: flex; gap: 16px; margin-bottom: 40px;
+    }
+    .stat-card {
+      flex: 1; background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px 28px;
+    }
+    .stat-label {
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 8px;
+    }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem; font-weight: 400;
+    }
+    .stat-card.yellow { border-left: 4px solid var(--yellow); }
+    .stat-card.blush  { border-left: 4px solid var(--blush); }
+    .stat-card.lilac  { border-left: 4px solid var(--lilac); }
+
+    /* ─── TABS ─── */
+    .tabs {
+      display: flex; gap: 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 0;
+    }
+    .tab {
+      background: none; border: none; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem; font-weight: 400;
+      color: var(--muted); padding: 14px 24px;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .tab:hover { color: var(--charcoal); }
+    .tab.active {
+      color: var(--charcoal); font-weight: 500;
+      border-bottom-color: var(--yellow-dk);
+    }
+    .tab-count {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--yellow-lt); color: var(--charcoal);
+      font-size: 0.7rem; font-weight: 500;
+      min-width: 22px; height: 22px; border-radius: 100px;
+      padding: 0 7px; margin-left: 8px;
+    }
+
+    /* ─── TABLE ─── */
+    .table-container {
+      background: white; border: 1px solid var(--border);
+      border-top: none; border-radius: 0 0 16px 16px;
+      overflow: hidden; margin-bottom: 32px;
+    }
+    .table-view { display: none; }
+    .table-view.active { display: block; }
+    table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    th {
+      text-align: left; font-weight: 500;
+      font-size: 0.72rem; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--muted);
+      padding: 14px 20px;
+      background: rgba(42,38,34,0.02);
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(245,226,122,0.06); }
+    .td-date {
+      font-size: 0.8rem; color: var(--muted); white-space: nowrap;
+    }
+    .td-type {
+      display: inline-block;
+      background: var(--yellow-lt);
+      padding: 3px 10px; border-radius: 6px;
+      font-size: 0.78rem; font-weight: 500;
+    }
+    .empty-state {
+      text-align: center; padding: 80px 20px;
+      color: var(--muted); font-size: 0.92rem;
+    }
+    .empty-state span {
+      font-size: 2.5rem; display: block; margin-bottom: 16px;
+    }
+
+    /* ─── ACTIONS ─── */
+    .actions {
+      display: flex; gap: 12px;
+    }
+    .btn {
+      background: white; border: 1px solid var(--border);
+      border-radius: 10px; padding: 11px 22px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem; font-weight: 500;
+      color: var(--charcoal); cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:hover { border-color: var(--charcoal); }
+    .btn.danger { color: #C44; border-color: #eaa; }
+    .btn.danger:hover { background: #C44; color: white; border-color: #C44; }
+
+    /* ─── LOADING ─── */
+    .loading {
+      text-align: center; padding: 60px;
+      color: var(--muted); font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .admin-nav { padding: 18px 20px; }
+      .admin-main { padding: 32px 20px 60px; }
+      .stats-row { flex-direction: column; }
+      th, td { padding: 12px 14px; }
+      table { font-size: 0.82rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="admin-nav">
+    <div class="admin-nav-left">
+      <a href="#" class="admin-nav-logo">Partum Care Now</a>
+      <span class="admin-nav-badge">Admin</span>
+    </div>
+    <a href="index.html" class="admin-nav-link">← Back to site</a>
+  </header>
+
+  <main class="admin-main">
+    <h1 class="admin-title">Waitlist Signups</h1>
+    <p class="admin-subtitle">All signups from your landing page, updated in real time.</p>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-card yellow">
+        <p class="stat-label">Total Signups</p>
+        <p class="stat-number" id="stat-total">—</p>
+      </div>
+      <div class="stat-card blush">
+        <p class="stat-label">Care Seekers</p>
+        <p class="stat-number" id="stat-seekers">—</p>
+      </div>
+      <div class="stat-card lilac">
+        <p class="stat-label">Providers</p>
+        <p class="stat-number" id="stat-providers">—</p>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('seekers', this)">
+        Seekers <span class="tab-count" id="count-seekers">0</span>
+      </button>
+      <button class="tab" onclick="switchTab('providers', this)">
+        Providers <span class="tab-count" id="count-providers">0</span>
+      </button>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-container">
+      <div class="table-view active" id="view-seekers">
+        <div class="loading" id="loading">Loading signups...</div>
+      </div>
+      <div class="table-view" id="view-providers"></div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="actions">
+      <button class="btn" onclick="exportCSV()">Export CSV</button>
+      <button class="btn" onclick="refreshData()">Refresh</button>
+      <button class="btn danger" onclick="clearData()">Clear All Data</button>
+    </div>
+  </main>
+
+  <script>
+    // ─── STORAGE HELPERS ───
+    async function loadSignups() {
+      try {
+        const result = await window.storage.get('waitlist-data');
+        return result ? JSON.parse(result.value) : { seekers: [], providers: [] };
+      } catch { return { seekers: [], providers: [] }; }
+    }
+
+    async function saveSignups(data) {
+      try { await window.storage.set('waitlist-data', JSON.stringify(data)); }
+      catch (err) { console.error('Storage error:', err); }
+    }
+
+    // ─── RENDER ───
+    function esc(str) {
+      const d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    function formatDate(iso) {
+      const d = new Date(iso);
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+        + ' \u00b7 ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    }
+
+    async function renderAll() {
+      const data = await loadSignups();
+      const seekers = data.seekers || [];
+      const providers = data.providers || [];
+      const total = seekers.length + providers.length;
+
+      // Stats
+      document.getElementById('stat-total').textContent = total;
+      document.getElementById('stat-seekers').textContent = seekers.length;
+      document.getElementById('stat-providers').textContent = providers.length;
+      document.getElementById('count-seekers').textContent = seekers.length;
+      document.getElementById('count-providers').textContent = providers.length;
+
+      // Seekers table
+      const seekerView = document.getElementById('view-seekers');
+      if (seekers.length === 0) {
+        seekerView.innerHTML = '<div class="empty-state"><span>\ud83d\udccb</span>No seeker signups yet.<br>They\'ll appear here as people sign up.</div>';
+      } else {
+        let html = '<table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Date</th></tr></thead><tbody>';
+        seekers.slice().reverse().forEach(s => {
+          html += '<tr>'
+            + '<td>' + esc(s.name) + '</td>'
+            + '<td>' + esc(s.email) + '</td>'
+            + '<td>' + esc(s.phone || '\u2014') + '</td>'
+            + '<td class="td-date">' + formatDate(s.timestamp) + '</td>'
+            + '</tr>';
+        });
+        html += '</tbody></table>';
+        seekerView.innerHTML = html;
+      }
+
+      // Providers table
+      const providerView = document.getElementById('view-providers');
+      if (providers.length === 0) {
+        providerView.innerHTML = '<div class="empty-state"><span>\ud83d\udccb</span>No provider signups yet.<br>They\'ll appear here as providers sign up.</div>';
+      } else {
+        let html = '<table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Type</th><th>Date</th></tr></thead><tbody>';
+        providers.slice().reverse().forEach(p => {
+          html += '<tr>'
+            + '<td>' + esc(p.name) + '</td>'
+            + '<td>' + esc(p.email) + '</td>'
+            + '<td>' + esc(p.phone || '\u2014') + '</td>'
+            + '<td><span class="td-type">' + esc(p.provider_type || '\u2014') + '</span></td>'
+            + '<td class="td-date">' + formatDate(p.timestamp) + '</td>'
+            + '</tr>';
+        });
+        html += '</tbody></table>';
+        providerView.innerHTML = html;
+      }
+    }
+
+    // ─── TABS ───
+    function switchTab(tab, btn) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.table-view').forEach(v => v.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('view-' + tab).classList.add('active');
+    }
+
+    // ─── EXPORT CSV ───
+    async function exportCSV() {
+      const data = await loadSignups();
+      const activeTab = document.querySelector('.tab.active').textContent.trim().toLowerCase();
+      const isProviders = activeTab.startsWith('provider');
+      const entries = isProviders ? data.providers : data.seekers;
+
+      if (entries.length === 0) { alert('No data to export.'); return; }
+
+      let csv = isProviders
+        ? 'Name,Email,Phone,Provider Type,Date\n'
+        : 'Name,Email,Phone,Date\n';
+
+      entries.forEach(e => {
+        const row = [e.name, e.email, e.phone || ''];
+        if (isProviders) row.push(e.provider_type || '');
+        row.push(new Date(e.timestamp).toLocaleString());
+        csv += row.map(v => '"' + v.replace(/"/g, '""') + '"').join(',') + '\n';
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = (isProviders ? 'providers' : 'seekers') + '-waitlist.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    // ─── REFRESH ───
+    async function refreshData() { await renderAll(); }
+
+    // ─── CLEAR ───
+    async function clearData() {
+      if (!confirm('Are you sure you want to delete ALL waitlist signups? This cannot be undone.')) return;
+      await saveSignups({ seekers: [], providers: [] });
+      await renderAll();
+    }
+
+    // ─── INIT ───
+    renderAll();
+  </script>
+</body>
+</html>
