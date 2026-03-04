@@ -72,7 +72,6 @@
       padding: 120px 48px 80px;
       overflow: hidden;
     }
-    /* Big decorative blobs */
     .blob {
       position: absolute; border-radius: 50%; filter: blur(80px);
       pointer-events: none; z-index: 0;
@@ -436,29 +435,6 @@
   </style>
 </head>
 <body>
-  <!--
-    Hidden forms for Netlify's build-time bot detection.
-    These are never shown to users — they just tell Netlify
-    which form names and fields to expect.
-  -->
-  <form name="seekers" netlify netlify-honeypot="bot-field" hidden>
-    <input name="form-name" type="hidden" value="seekers" />
-    <input name="bot-field" />
-    <input name="flow" />
-    <input name="name" />
-    <input name="email" />
-    <input name="phone" />
-  </form>
-  <form name="providers" netlify netlify-honeypot="bot-field" hidden>
-    <input name="form-name" type="hidden" value="providers" />
-    <input name="bot-field" />
-    <input name="flow" />
-    <input name="name" />
-    <input name="email" />
-    <input name="phone" />
-    <input name="provider_type" />
-  </form>
-
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">Partum Care Now</a>
@@ -533,9 +509,7 @@
         </div>
         <!-- SEEKER FORM -->
         <div class="form-panel active" id="panel-seeker">
-          <form class="waitlist-form" name="seekers" method="POST" data-netlify="true" onsubmit="handleSubmit(event, 'seeker')">
-            <input type="hidden" name="form-name" value="seekers" />
-            <input type="hidden" name="flow" value="seeker" />
+          <form class="waitlist-form" onsubmit="handleSubmit(event, 'seeker')">
             <input type="text"  name="name"  placeholder="Your name"     required />
             <input type="email" name="email" placeholder="Email address"  required />
             <input type="tel"   name="phone" placeholder="Phone number (optional)" class="full-width" />
@@ -544,9 +518,7 @@
         </div>
         <!-- PROVIDER FORM -->
         <div class="form-panel" id="panel-provider">
-          <form class="waitlist-form" name="providers" method="POST" data-netlify="true" onsubmit="handleSubmit(event, 'provider')">
-            <input type="hidden" name="form-name" value="providers" />
-            <input type="hidden" name="flow" value="provider" />
+          <form class="waitlist-form" onsubmit="handleSubmit(event, 'provider')">
             <input type="text"  name="name"  placeholder="Your name"     required />
             <input type="email" name="email" placeholder="Email address"  required />
             <input type="tel"   name="phone" placeholder="Phone number (optional)" class="full-width" />
@@ -576,6 +548,12 @@
     <span class="footer-right">© 2025 partumcarenow.com · All rights reserved</span>
   </footer>
   <script>
+    // ═══════════════════════════════════════════════════════════════
+    // PASTE YOUR GOOGLE APPS SCRIPT URL BELOW (Step 5 in setup)
+    // ═══════════════════════════════════════════════════════════════
+    const SHEET_URL = 'PASTE_YOUR_URL_HERE';
+    // ═══════════════════════════════════════════════════════════════
+
     // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -601,7 +579,7 @@
       document.getElementById('panel-' + flow).classList.add('active');
     }
 
-    // Form submit → Netlify Forms
+    // Form submit → Google Sheets
     async function handleSubmit(e, flow) {
       e.preventDefault();
       const form = e.target;
@@ -610,17 +588,25 @@
       btn.textContent = 'Saving...';
       btn.disabled = true;
 
-      const data = new FormData(form);
+      const payload = {
+        flow: flow,
+        name:  form.querySelector('[name="name"]').value,
+        email: form.querySelector('[name="email"]').value,
+        phone: form.querySelector('[name="phone"]')?.value || '',
+      };
+      if (flow === 'provider') {
+        payload.provider_type = form.querySelector('[name="provider_type"]').value;
+      }
 
       try {
-        const response = await fetch('/', {
+        await fetch(SHEET_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(data).toString(),
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
         });
 
-        if (!response.ok) throw new Error('Network error');
-
+        // Show success (no-cors means we can't read response, but data is sent)
         document.getElementById('form-container').style.display = 'none';
         const msg = document.getElementById('success-msg');
         msg.style.display = 'flex';
