@@ -259,13 +259,13 @@
     // ─── STORAGE HELPERS ───
     async function loadSignups() {
       try {
-        const result = await window.storage.get('waitlist-data');
+        const result = await window.storage.get('waitlist-data', true);
         return result ? JSON.parse(result.value) : { seekers: [], providers: [] };
       } catch { return { seekers: [], providers: [] }; }
     }
 
     async function saveSignups(data) {
-      try { await window.storage.set('waitlist-data', JSON.stringify(data)); }
+      try { await window.storage.set('waitlist-data', JSON.stringify(data), true); }
       catch (err) { console.error('Storage error:', err); }
     }
 
